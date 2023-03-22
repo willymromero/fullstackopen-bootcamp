@@ -2,7 +2,7 @@
 
 ---
 
-This is my own response of this exercise. In this case I use `Load SPA` message, it represents everything that happens when the user enters [spa notes fullstackopen](https://studies.cs.helsinki.fi/exampleapp/spa) and this message is represents by [Exercise 0.5](./exercise0.5.md)
+This is my own response of this exercise. In this case I use `Load SPA` message, it represents everything that happens when the user enters [spa notes fullstackopen](https://studies.cs.helsinki.fi/exampleapp/spa){:target="_blank"} and this message is represents by [Exercise 0.5](./exercise0.5.md)
 
 ## **Diagram.** 🔽
 

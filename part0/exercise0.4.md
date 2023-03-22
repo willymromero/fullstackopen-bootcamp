@@ -2,7 +2,7 @@
 
 ---
 
-This is my own response of this exercise using sequence diagram, bout I reuse diagram used by course authors to make shorter answer. So I use messages named `Load  web page content` it represents all steps of [authors' diagram](https://fullstackopen.com/es/part0/fundamentos_de_las_aplicaciones_web#cargando-una-pagina-que-contiene-java-script-revisada), that is, it represents everything that happens when the user enters [notes fullstackopen](https://studies.cs.helsinki.fi/exampleapp/notes). I know this isn't the most fidelity process, but I think is a resume of principal events.
+This is my own response of this exercise using sequence diagram, bout I reuse diagram used by course authors to make shorter answer. So I use messages named `Load  web page content` it represents all steps of [authors' diagram](https://fullstackopen.com/es/part0/fundamentos_de_las_aplicaciones_web#cargando-una-pagina-que-contiene-java-script-revisada){:target="_blank"}, that is, it represents everything that happens when the user enters [notes fullstackopen](https://studies.cs.helsinki.fi/exampleapp/notes){:target="_blank"}. I know this isn't the most fidelity process, but I think is a resume of principal events.
 
 ## **Diagram.** 🔽
 
