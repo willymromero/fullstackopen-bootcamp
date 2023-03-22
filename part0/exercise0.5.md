@@ -1,14 +1,14 @@
-# **This is PART 0, Exercise 0.5**
+# 📒 **This is PART 0, Exercise 0.5**
 
 ---
 
 This is my own response of this exercise.
 
-## **Diagram.**
+## **Diagram.** 🔽
 
 ![Alt text](img/Exercise0.5.png)
 
-## **Diagram code.**
+## **Diagram code.** 🔽
 
 ```
 title Exercise 0.5: Single page app diagram
