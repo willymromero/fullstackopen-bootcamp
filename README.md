@@ -1,5 +1,5 @@
 Hi there👋!, I'm `MaykCodes`.
-this is my repository to practice react while doing [fullstackopen](https://fullstackopen.com/) fullstack course
+This is my repository to practice `React` while doing [fullstackopen](https://fullstackopen.com/) fullstack course
 
 # Course content
 
