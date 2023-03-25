@@ -30,8 +30,9 @@ const App = () => {
   }
 
   const exercises = course.parts
-    .map((part) => part.exercises)
-    .reduce((totalExercises, exercises) => totalExercises + exercises, 0);
+    .reduce(
+      (totalExercises, currentExercises) => totalExercises + currentExercises.exercises, 0
+    );
 
   return <Course course={course} total={exercises} />
 }

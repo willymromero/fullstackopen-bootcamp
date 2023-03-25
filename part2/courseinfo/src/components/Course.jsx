@@ -18,7 +18,6 @@ const Course = ({ course, total }) => (
     <div>
         <Header course={course.name} />
         <Content name={course.parts} parts={course.parts} />
-        {console.log(total)}
         <Total total={total} />
     </div>
 );
