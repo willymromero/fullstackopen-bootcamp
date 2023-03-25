@@ -12,7 +12,7 @@ const Content = ({ parts }) => (
     </>
 );
 
-const Total = ({ total }) => <p>Number of the exercises {total}</p>;
+const Total = ({ total }) => <p><strong>Total of {total} exercises</strong></p>;
 
 const Course = ({ course, total }) => (
     <div>
