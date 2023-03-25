@@ -2,7 +2,9 @@ import React from "react";
 import Course from "./components/Course";
 
 const countExercises = (partExercises) =>
-  partExercises.reduce((totalExercises, currentExercises) => totalExercises + currentExercises.exercises, 0);
+  partExercises.reduce(
+    (totalExercises, currentExercises) => totalExercises + currentExercises.exercises, 0
+  );
 
 const App = () => {
   const courses = [
