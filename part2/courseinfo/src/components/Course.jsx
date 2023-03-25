@@ -14,10 +14,12 @@ const Content = ({ parts }) => (
 
 const Total = ({ total }) => <p>Number of the exercises {total}</p>;
 
-const Course = ({ course }) => (
+const Course = ({ course, total }) => (
     <div>
         <Header course={course.name} />
         <Content name={course.parts} parts={course.parts} />
+        {console.log(total)}
+        <Total total={total} />
     </div>
 );
 
