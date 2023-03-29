@@ -1,6 +1,7 @@
+import Filter from "./components/filter";
+import Persons from "./components/Persons";
+import PersonForm from "./components/PersonForm";
 import React, { useState } from "react";
-
-const Person = ({ person }) => <li>{person.name}: {person.number}</li>
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -45,33 +46,17 @@ const App = () => {
   return (
     <div>
       <h2>PhoneBook</h2>
-      <div>
-        filter shown with: <input onChange={handleFilterChange} />
-      </div>
-      <h2>Add a new</h2>
-      <form onSubmit={addPerson}>
-        <div>
-          name: <input value={newPersonName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input value={newPersonNumber} onChange={handleNumberChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
-      <div>
-        <ul>
-          {
-            persons
-              .filter(person => new RegExp(`.*${searchFilter}.*`, "i").test(person.name))
-              .map((person, index) => <Person key={index} person={person} />)
-          }
-        </ul>
-      </div>
+      <Filter handleChange={handleFilterChange} />
+      <h3>Add a new</h3>
+      <PersonForm
+        handleSubmit={addPerson}
+        personName={newPersonName} handlePersonName={handleNameChange}
+        personNumber={newPersonNumber} handlePersonNumber={handleNumberChange}
+      />
+      <h3>Numbers</h3>
+      <Persons persons={persons} searchFilter={searchFilter} />
       <div style={{ backgroundColor: "#0fff55" }}>
-        <h2>debug</h2>
+        <h2>Debug</h2>
         current writing = {newPersonName} {newPersonNumber}
       </div>
     </div>
