@@ -3,9 +3,27 @@ import CountryDetails from "./CountryDetails";
 
 const MAX_FILTERED_COUNTRIES = 10;
 
-const Country = ({ country }) => <li>{country.name.common}</li>;
+const Button = ({ handleClick, text }) => (
+    <button onClick={handleClick}>{text}</button>
+);
 
-const Countries = ({ countries, searchFilter }) => {
+const Country = ({ country, handleSelectCountry }) => {
+
+    const countryName = country.name.common;
+
+    const handleClick = (country) => {
+        handleSelectCountry(country);
+    };
+
+    return (
+        <>
+            {countryName}: <Button handleClick={() => handleClick(country)} text={"show"} />
+        </>
+    );
+};
+
+const Countries = ({ countries, searchFilter, handleSelectCountry }) => {
+
     const countriesFiltered = countries.filter(
         country => new RegExp(`.*${searchFilter}.*`, "i")
             .test(country.name.common)
@@ -25,7 +43,6 @@ const Countries = ({ countries, searchFilter }) => {
         const country = countriesFiltered[0];
         return (
             <div>
-                <h2>{country.name.common}</h2>
                 <CountryDetails country={country} />
             </div>
         );
@@ -43,7 +60,14 @@ const Countries = ({ countries, searchFilter }) => {
         <div>
             <h2>Countries List</h2>
             <ul>
-                {countriesFiltered.map((country, index) => <Country key={index} country={country} />)}
+                {
+                    countriesFiltered.map(country => (
+
+                        <li key={country.name.official}>
+                            <Country country={country} handleSelectCountry={handleSelectCountry} />
+                        </li>
+                    ))
+                }
             </ul>
         </div>
     );

@@ -2,6 +2,7 @@ import React from "react";
 
 const CountryDetails = ({ country }) => (
     <div>
+        <h2>{country.name.common}</h2>
         <div>
             <div><b>Capital:</b> {country.capital[0]}</div>
             <div><b>Population:</b> {country.population}</div>

@@ -1,11 +1,13 @@
 import axios from "axios";
 import Countries from "./components/Countries";
+import CountryDetails from "./components/CountryDetails";
 import Filter from "./components/Filter";
 import React, { useState, useEffect } from 'react'
 
-function App() {
+const App = () => {
   const [countries, setCountries] = useState([]);
-  const [searchFilter, setSearchFilter] = useState([]);
+  const [searchFilter, setSearchFilter] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState({});
 
   useEffect(() => {
     axios
@@ -17,13 +19,25 @@ function App() {
 
   const handleFilterChange = (event) => {
     setSearchFilter(event.target.value);
+    setSelectedCountry({});
+  }
+
+  const handleSelectCountry = (country) => {
+    setSelectedCountry(country);
   }
 
   return (
     <div>
       <h1>World Countries</h1>
       <Filter handleChange={handleFilterChange} />
-      <Countries countries={countries} searchFilter={searchFilter} />
+      <Countries
+        countries={countries}
+        searchFilter={searchFilter}
+        handleSelectCountry={handleSelectCountry}
+      />
+      {
+        Object.keys(selectedCountry).length !== 0 ? <CountryDetails country={selectedCountry} /> : <></>
+      }
     </div>
   )
 }
