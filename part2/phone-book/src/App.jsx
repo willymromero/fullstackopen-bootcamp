@@ -44,15 +44,15 @@ const App = () => {
 
   const handleNameChange = (event) => {
     setNewPersonName(event.target.value);
-  }
+  };
 
   const handleNumberChange = (event) => {
     setNewPersonNumber(event.target.value);
-  }
+  };
 
   const handleFilterChange = (event) => {
     setSearchFilter(event.target.value);
-  }
+  };
 
   return (
     <div>
@@ -65,13 +65,17 @@ const App = () => {
         personNumber={newPersonNumber} handlePersonNumber={handleNumberChange}
       />
       <h3>Numbers</h3>
-      <Persons persons={persons} searchFilter={searchFilter} />
+      <Persons
+        persons={persons}
+        searchFilter={searchFilter}
+        setPersons={setPersons}
+      />
       <div style={{ backgroundColor: "#0fff55" }}>
         <h2>Debug</h2>
         current writing = {newPersonName} {newPersonNumber}
       </div>
     </div>
   );
-}
+};
 
 export default App;
