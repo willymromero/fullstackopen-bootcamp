@@ -2,6 +2,7 @@ import Filter from "./components/filter";
 import Persons from "./components/Persons";
 import PersonForm from "./components/PersonForm";
 import personService from "./services/persons";
+import Notification from "./components/Notification";
 
 import React, { useState, useEffect } from "react";
 
@@ -10,6 +11,7 @@ const App = () => {
   const [newPersonName, setNewPersonName] = useState("");
   const [newPersonNumber, setNewPersonNumber] = useState("");
   const [searchFilter, setSearchFilter] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -34,6 +36,10 @@ const App = () => {
         personService
           .update(personExists.id, personObject)
           .then(editedPerson => setPersons(persons.map(person => person.id !== personExists.id ? person : editedPerson)))
+          .then(() => {
+            setErrorMessage(`Phone number of person "${personExists.name}" was updated successfully`);
+            setTimeout(() => { setErrorMessage(null) }, 5000);
+          });
       }
       return;
     }
@@ -42,6 +48,8 @@ const App = () => {
       .create(personObject)
       .then(newPerson => {
         setPersons([...persons, newPerson]);
+        setErrorMessage(`Person "${newPerson.name}" was created successfully`);
+        setTimeout(() => { setErrorMessage(null) }, 5000);
         setNewPersonName("");
         setNewPersonNumber("");
       });
@@ -61,7 +69,9 @@ const App = () => {
 
   return (
     <div>
+
       <h2>PhoneBook</h2>
+      <Notification message={errorMessage} />
       <Filter handleChange={handleFilterChange} />
       <h3>Add a new</h3>
       <PersonForm
@@ -75,7 +85,7 @@ const App = () => {
         searchFilter={searchFilter}
         setPersons={setPersons}
       />
-      <div style={{ backgroundColor: "#0fff55" }}>
+      <div style={{ backgroundColor: "#87ffd3" }}>
         <h2>Debug</h2>
         current writing = {newPersonName} {newPersonNumber}
       </div>
