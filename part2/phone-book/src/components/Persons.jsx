@@ -1,7 +1,7 @@
 import React from "react";
 import personService from "../services/persons";
 
-const Persons = ({ persons, searchFilter, setPersons }) => {
+const Persons = ({ persons, searchFilter, setPersons, setNotificationMessage }) => {
     const deletePerson = (id) => {
         const person = persons.find(person => person.id === id);
 
@@ -11,7 +11,8 @@ const Persons = ({ persons, searchFilter, setPersons }) => {
                 .deleteById(id)
                 .then(() => setPersons(persons.filter(person => person.id !== id)))
                 .catch(error => {
-                    alert(`The person "${person.name}" was already deleted from server 😨`);
+                    setNotificationMessage({ status: "error", text: `Person "${person.name}" has already been removed from PhoneBook` });
+                    setTimeout(() => { setNotificationMessage({}) }, 5000); 
                     setPersons(persons.filter(person => person.id !== id));
                     console.log(error);
                 });

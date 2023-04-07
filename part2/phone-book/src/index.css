@@ -1,5 +1,14 @@
-.notification {
+.success {
     background-color: #38c37b;
+    color: white;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1em;
+}
+
+.error {
+    background-color: #c33838;
     color: white;
     padding: 1em;
     border-radius: 5px;

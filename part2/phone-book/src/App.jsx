@@ -11,7 +11,7 @@ const App = () => {
   const [newPersonName, setNewPersonName] = useState("");
   const [newPersonNumber, setNewPersonNumber] = useState("");
   const [searchFilter, setSearchFilter] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null)
+  const [notificationMessage, setNotificationMessage] = useState({})
 
   useEffect(() => {
     personService
@@ -37,8 +37,14 @@ const App = () => {
           .update(personExists.id, personObject)
           .then(editedPerson => setPersons(persons.map(person => person.id !== personExists.id ? person : editedPerson)))
           .then(() => {
-            setErrorMessage(`Phone number of person "${personExists.name}" was updated successfully`);
-            setTimeout(() => { setErrorMessage(null) }, 5000);
+            setNotificationMessage({ status: "success", text: `Phone number of person "${personExists.name}" was updated successfully` });
+            setTimeout(() => { setNotificationMessage({}) }, 5000);
+          })
+          .catch(error => {
+            setNotificationMessage({ status: "error", text: `Person "${personExists.name}" has already been removed from PhoneBook` });
+            setTimeout(() => { setNotificationMessage({}) }, 5000);
+            setPersons(persons.filter(person => person.id !== id));
+            console.log(error);
           });
       }
       return;
@@ -48,8 +54,8 @@ const App = () => {
       .create(personObject)
       .then(newPerson => {
         setPersons([...persons, newPerson]);
-        setErrorMessage(`Person "${newPerson.name}" was created successfully`);
-        setTimeout(() => { setErrorMessage(null) }, 5000);
+        setNotificationMessage({ status: "success", text: `Person "${newPerson.name}" was created successfully` });
+        setTimeout(() => { setNotificationMessage({}) }, 5000);
         setNewPersonName("");
         setNewPersonNumber("");
       });
@@ -71,7 +77,7 @@ const App = () => {
     <div>
 
       <h2>PhoneBook</h2>
-      <Notification message={errorMessage} />
+      <Notification notificationMessage={notificationMessage} />
       <Filter handleChange={handleFilterChange} />
       <h3>Add a new</h3>
       <PersonForm
@@ -84,6 +90,7 @@ const App = () => {
         persons={persons}
         searchFilter={searchFilter}
         setPersons={setPersons}
+        setNotificationMessage={setNotificationMessage}
       />
       <div style={{ backgroundColor: "#87ffd3" }}>
         <h2>Debug</h2>
