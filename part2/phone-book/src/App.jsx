@@ -19,24 +19,29 @@ const App = () => {
       });
   }, []);
 
-
   const addPerson = (event) => {
     event.preventDefault();
 
     const personExists = persons.find(person => person.name === newPersonName);
-    if (personExists) {
-      return alert(`Whops,${newPersonName} already exists!`);
-    }
 
     const personObject = {
       name: newPersonName,
       number: newPersonNumber,
     };
 
+    if (personExists) {
+      if (window.confirm(`Do you want update phone number of ${personExists.name}`)) {
+        personService
+          .update(personExists.id, personObject)
+          .then(editedPerson => setPersons(persons.map(person => person.id !== personExists.id ? person : editedPerson)))
+      }
+      return;
+    }
+
     personService
       .create(personObject)
-      .then(returnedPerson => {
-        setPersons(persons.concat(returnedPerson));
+      .then(newPerson => {
+        setPersons([...persons, newPerson]);
         setNewPersonName("");
         setNewPersonNumber("");
       });
