@@ -56,6 +56,18 @@ const persons = [
 
 // routes
 
+app.get("/info", (req, res) => {
+  const phonebookCount = persons.length;
+  const date = new Date();
+  res.send(
+    `<div>
+      <h1>Phonebook Info</h1>
+      <p>Phonebook has ifo for ${phonebookCount} people</p>
+      <p>Ecuador, Riobamba ${date}</p>
+    </div>`
+  );
+});
+
 app.get("/api/persons", (req, res) => {
   res.json(persons);
 });
