@@ -1,0 +1,19 @@
+# Get all person from phonebook
+
+GET  http://localhost:3001/api/persons
+
+###
+
+# Get phonebook information
+GET http://localhost:3001/info
+
+###
+
+# Get specific person from phonebook
+GET http://localhost:3001/api/persons/4
+
+
+###
+
+# Delete specific person from phonebook
+DELETE http://localhost:3001/api/persons/10

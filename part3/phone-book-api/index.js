@@ -6,7 +6,7 @@ const SERVER_PORT = 3001;
 
 // data
 
-const persons = [
+let persons = [
   {
     name: "Arto Hellas",
     number: "040-123456",
@@ -79,6 +79,12 @@ app.get("/api/persons/:id", (req, res) => {
     res.status(404).end();
   }
   res.json(person);
+});
+
+app.delete("/api/persons/:id", (req, res) => {
+  const id = Number(req.params.id);
+  persons = persons.filter((person) => person.id !== id);
+  res.status(200).end();
 });
 
 app.listen(SERVER_PORT, () =>
