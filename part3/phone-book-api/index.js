@@ -60,10 +60,15 @@ let persons = [
 
 // methods
 
-function generateId(max) {
-  return Math.floor(Math.random() * max);
-}
+const generateId = (max) => Math.floor(Math.random() * max);
 
+const isUniqueName = (name) => {
+  return persons.find((person) => person.name === name) !== undefined;
+};
+
+const isUniqueNumber = (number) => {
+  return persons.find((person) => person.number === number) !== undefined;
+};
 // routes
 
 app.get("/info", (req, res) => {
@@ -92,6 +97,18 @@ app.post("/api/persons", (req, res) => {
   if (!name || !number) {
     return res.status(400).json({
       error: "not enough information",
+    });
+  }
+
+  if (isUniqueName(name)) {
+    return res.status(400).json({
+      error: "name must be unique",
+    });
+  }
+
+  if (isUniqueNumber(number)) {
+    return res.status(400).json({
+      error: "number must be unique",
     });
   }
 
