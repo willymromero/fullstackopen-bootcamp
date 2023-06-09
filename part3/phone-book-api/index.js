@@ -2,6 +2,10 @@ import express from "express";
 
 const app = express();
 
+// app settings
+
+app.use(express.json());
+
 const SERVER_PORT = 3001;
 
 // data
@@ -54,6 +58,12 @@ let persons = [
   },
 ];
 
+// methods
+
+function generateId(max) {
+  return Math.floor(Math.random() * max);
+}
+
 // routes
 
 app.get("/info", (req, res) => {
@@ -66,6 +76,33 @@ app.get("/info", (req, res) => {
       <p>Ecuador, Riobamba ${date}</p>
     </div>`
   );
+});
+
+app.post("/api/persons", (req, res) => {
+  const body = req.body;
+
+  if (body.content !== undefined) {
+    return res.status(400).json({
+      error: "content missing",
+    });
+  }
+
+  const { name, number } = body;
+
+  if (!name || !number) {
+    return res.status(400).json({
+      error: "not enough information",
+    });
+  }
+
+  const person = {
+    personId: generateId(1000),
+    name: name,
+    number: number,
+  };
+
+  persons = persons.concat(person);
+  res.json(person);
 });
 
 app.get("/api/persons", (req, res) => {
