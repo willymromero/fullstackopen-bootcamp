@@ -8,8 +8,6 @@ This is my own response of this exercise. In this case I use `Load SPA` message,
 
 ```mermaid
   sequenceDiagram
-    title Exercise 0.6: New note in Single page app diagram
-
     participant User
     participant Browser
     participant Server
@@ -31,8 +29,6 @@ This is my own response of this exercise. In this case I use `Load SPA` message,
 
 ```
   sequenceDiagram
-    title Exercise 0.6: New note in Single page app diagram
-
     participant User
     participant Browser
     participant Server
