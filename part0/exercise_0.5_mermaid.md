@@ -20,7 +20,7 @@ sequenceDiagram
     Browser->>Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
     Server-->>Browser: spa.js
 
-    note over Browser: With resources ready\nBrowser executes spa.js, therefore gets JSON data
+    note over Browser: With resources ready Browser executes spa.js, therefore gets JSON data
     Browser->>Browser: Execute spa.js
 
     Browser->>Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
