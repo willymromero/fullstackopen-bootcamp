@@ -9,16 +9,16 @@ This is my own response of this exercise. In this case I use `Load SPA` message,
 ```mermaid
   sequenceDiagram
     title Exercise 0.6: New note in Single page app diagram
-  
+
     participant User
     participant Browser
     participant Server
-  
+
     User->>Browser: Go to https://studies.cs.helsinki.fi/exampleapp/spa
-    Browser<->>Server: Load SPA
+    Browser->>Server: Load SPA
     Server-->>Browser: SPA Loaded
     Browser-->>User: Show SPA ready
-  
+
     note over User: User writes a new note and submits form
     User->>Browser: Type new note on input field and click on "save"
     Browser->>Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
