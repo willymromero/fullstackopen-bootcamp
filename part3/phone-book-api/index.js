@@ -3,8 +3,16 @@ import express from "express";
 const app = express();
 
 // app settings
+const requestLogger = (req, res, next) => {
+  console.log("Method:", req.method);
+  console.log("Path: ", req.path);
+  console.log("Body: ", req.body);
+  console.log("----");
+  next();
+};
 
 app.use(express.json());
+app.use(requestLogger);
 
 const SERVER_PORT = 3001;
 
@@ -140,6 +148,11 @@ app.delete("/api/persons/:id", (req, res) => {
   persons = persons.filter((person) => person.id !== id);
   res.status(200).end();
 });
+
+const unknownEndpoint = (req, res) => {
+  res.status(404).send({ error: "unknown endpoint" });
+};
+app.use(unknownEndpoint);
 
 app.listen(SERVER_PORT, () =>
   console.log(`Server listening on ${SERVER_PORT}`)
