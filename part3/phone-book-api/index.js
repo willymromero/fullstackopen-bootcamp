@@ -1,4 +1,5 @@
 import express from "express";
+import { logger } from "./Logger.js";
 
 const app = express();
 
@@ -13,6 +14,7 @@ const requestLogger = (req, res, next) => {
 
 app.use(express.json());
 app.use(requestLogger);
+app.use(logger);
 
 const SERVER_PORT = 3001;
 
