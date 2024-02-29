@@ -41,17 +41,16 @@ const App = () => {
             setNotificationMessage({ status: 'success', text: `Phone number of person "${personExists.name}" was updated successfully` })
             setTimeout(() => { setNotificationMessage({}) }, 5000)
           })
-          .catch(error => {
-            setNotificationMessage({ status: 'error', text: `Person "${personExists.name}" has already been removed from PhoneBook` })
+          .catch(() => {
+            setNotificationMessage({ status: 'error', text: `Person "${personExists.name}" has already been added to PhoneBook` })
             setTimeout(() => { setNotificationMessage({}) }, 5000)
             setPersons(persons.filter(person => person.id !== personExists.id))
-            console.log(error)
           })
       }
       return
     }
 
-    await personService
+    personService
       .create(personObject)
       .then(newPerson => {
         setPersons([...persons, newPerson])
@@ -59,6 +58,11 @@ const App = () => {
         setTimeout(() => { setNotificationMessage({}) }, 5000)
         setNewPersonName('')
         setNewPersonNumber('')
+      })
+      .catch(() => {
+        setNotificationMessage({ status: 'error', text: `The number "${newPersonNumber}" has already been added to PhoneBook` })
+        setTimeout(() => { setNotificationMessage({}) }, 5000)
+        setPersons(persons.filter(person => person?.id !== personExists?.id))
       })
   }
 
