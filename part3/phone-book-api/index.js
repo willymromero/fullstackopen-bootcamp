@@ -1,19 +1,21 @@
 import express from "express";
+import cors from "cors";
 import { logger } from "./Logger.js";
 
 const app = express();
 
 // app settings
-const requestLogger = (req, res, next) => {
-  console.log("Method:", req.method);
-  console.log("Path: ", req.path);
-  console.log("Body: ", req.body);
-  console.log("----");
-  next();
-};
+// const requestLogger = (req, res, next) => {
+//   console.log("Method:", req.method);
+//   console.log("Path: ", req.path);
+//   console.log("Body: ", req.body);
+//   console.log("----");
+//   next();
+// };
 
 app.use(express.json());
-app.use(requestLogger);
+// app.use(requestLogger);
+app.use(cors());
 app.use(logger);
 
 const SERVER_PORT = 3001;
@@ -22,51 +24,57 @@ const SERVER_PORT = 3001;
 
 let persons = [
   {
-    name: "Arto Hellas",
-    number: "040-123456",
+    name: "Alice Johnson",
+    number: "555-1234",
     id: 1,
   },
   {
-    name: "Ada Lovelace",
-    number: "39-44-5323523",
+    name: "Bob Smith",
+    number: "555-5678",
     id: 2,
   },
   {
-    name: "Dan Abramov",
-    number: "12-43-234345",
+    name: "Charlie Davis",
+    number: "555-9876",
     id: 3,
   },
   {
-    name: "Mary Poppendieck",
-    number: "39-23-6423122",
+    name: "Diana Martinez",
+    number: "555-4321",
     id: 4,
   },
   {
-    name: "Felix Lozada",
-    number: "0997043343",
+    name: "Evan White",
+    number: "555-8765",
     id: 5,
   },
   {
-    name: "Test 1",
-    number: "00000000001",
+    name: "Fiona Brown",
+    number: "555-3456",
     id: 6,
   },
   {
-    name: "asdasd",
-    number: "123",
+    name: "George Taylor",
+    number: "555-6543",
     id: 7,
   },
   {
-    name: "asdasdasd",
-    number: "",
+    name: "Holly Wilson",
+    number: "555-7890",
     id: 8,
   },
   {
-    name: "aaaaaaaaaaaa",
-    number: "",
+    name: "Ian Miller",
+    number: "555-2109",
+    id: 9,
+  },
+  {
+    name: "Julia Davis",
+    number: "555-1092",
     id: 10,
   },
 ];
+
 
 // methods
 
@@ -123,7 +131,7 @@ app.post("/api/persons", (req, res) => {
   }
 
   const person = {
-    personId: generateId(1000),
+    id: generateId(1000),
     name: name,
     number: number,
   };
@@ -144,6 +152,26 @@ app.get("/api/persons/:id", (req, res) => {
   }
   res.json(person);
 });
+
+app.put("/api/persons/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const person = persons.find((person) => person.id === id);
+  if (!person) {
+    res.status(404).end();
+  }
+  
+  const body = req.body;
+  const { name, number } = body;
+  if (isUniqueNumber(number)) {
+    return res.status(400).json({
+      error: "number must be unique",
+    });
+  }
+
+  const updatedPerson = { ...person, name, number };
+  persons = persons.map((person) => (person.id !== id ? person : updatedPerson));
+  res.status(200).json(updatedPerson);
+})
 
 app.delete("/api/persons/:id", (req, res) => {
   const id = Number(req.params.id);
