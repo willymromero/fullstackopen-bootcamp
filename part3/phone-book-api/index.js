@@ -90,13 +90,13 @@ const isUniqueNumber = (number) => {
 // routes
 
 app.get("/info", (req, res) => {
-  const phonebookCount = persons.length;
+  const phoneBookCount = persons.length;
   const date = new Date();
   res.send(
     `<div>
-      <h1>Phonebook Info</h1>
-      <p>Phonebook has ifo for ${phonebookCount} people</p>
-      <p>Ecuador, Riobamba ${date}</p>
+      <h1>PhoneBook Info</h1>
+      <p>PhoneBook has ifo for ${phoneBookCount} people</p>
+      <p>Ecuador, STO ${date}</p>
     </div>`
   );
 });
