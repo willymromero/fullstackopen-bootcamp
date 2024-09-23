@@ -1,12 +1,15 @@
-# Hi there👋!, I'm `MaykCodes`
+# Hi there👋!, I'm `Willy`
 
-This is my repository to practice `React` while doing [fullstackopen](https://fullstackopen.com/) fullstack course
+This is my solution repository of projects from [Full Stack Open](https://fullstackopen.com/)
 
-## Course content
+## Links
 
-The course provided by fullstackopen is divided in some parts, therefore this repository is divided in parts too.
+### Phone book
 
-## Parts Finished
+- __Backend Api:__ [https://fullstackopen-bootcamp-phone-book-api.onrender.com/api/persons](https://fullstackopen-bootcamp-phone-book-api.onrender.com/api/persons)
+- __Backend Api Endpoints:__ [here](part3/phone-book-api/phone-book-api.rest)
+
+## Finished Parts
 
 - [x] Part 0
 - [x] Part 1
